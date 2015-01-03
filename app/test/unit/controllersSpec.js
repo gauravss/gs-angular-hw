@@ -8,8 +8,13 @@ describe('PhoneListController', function () {
     it('should create phones model with 3 phones', inject(function($controller) {
         var scope = {},
             ctrl = $controller('PhoneListController', {$scope:scope});
-
-        expect(scope.phones.length).toBe(3);
+        describe('expect 3 phones', function() {
+            expect(scope.phones.length).toBe(3);
+        });
+        describe('expect name as world', function () {
+            expect(scope.name).toBe('World');
+        });
 
     }));
+
 });

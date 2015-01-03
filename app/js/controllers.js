@@ -11,4 +11,6 @@ app.controller('PhoneListController', function($scope) {
         {'name': 'Motorola XOOM™ with Wi-Fi', 'snippet': 'The Next, Next Generation tablet'},
         {'name': 'MOTOROLA XOOM', 'snippet': 'The Next, Next Generation tablet.'}
     ];
+
+    $scope.name = "World";
 });
