@@ -1,5 +1,5 @@
-=============
-gs-angular-hw
+=======
+gs-angular-hw - AngularJs Hello World
 =============
 # Based on angular-seed — the seed for AngularJS apps
 
