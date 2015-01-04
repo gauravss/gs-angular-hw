@@ -3,18 +3,26 @@
  */
 describe('PhoneListController', function () {
 
+    var scope, ctrl;
+
     beforeEach(module('myPhoneCatApp'));
 
-    it('should create phones model with 3 phones', inject(function($controller) {
-        var scope = {},
-            ctrl = $controller('PhoneListController', {$scope:scope});
-        describe('expect 3 phones', function() {
-            expect(scope.phones.length).toBe(3);
-        });
-        describe('expect name as world', function () {
-            expect(scope.name).toBe('World');
-        });
-
+    beforeEach(inject(function($controller){
+        scope = {};
+        ctrl = $controller('PhoneListController', {$scope:scope});
     }));
+
+    it('should create phones model with 3 phones', function() {
+        expect(scope.phones.length).toBe(3);
+    });
+
+
+    it('should create name as World', function() {
+        expect(scope.name).toBe('World');
+    });
+
+    it('should set the defult value of orderProp model', function() {
+        expect(scope.orderProp).toBe('age');
+    });
 
 });

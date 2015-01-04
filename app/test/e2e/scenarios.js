@@ -11,6 +11,7 @@ describe('myPhoneCat App', function() {
 
         var phoneList = element.all(by.repeater('phone in phones'));
         var query = element(by.model('query'));
+        var phoneNameColumn = element.all(by.repeater('phone in phones').column('{{phone.name}}'));
 
         it('should filter the phone list as a user types into search box', function() {
 
@@ -34,6 +35,29 @@ describe('myPhoneCat App', function() {
 
             query.sendKeys('nexus');
             expect(browser.getTitle()).toMatch(/Google Phone Gallery: nexus$/);
+
+        });
+
+        it('should be possible to control the phone order via the drop down select box', function() {
+            function getNames() {
+                return phoneNameColumn.map(function(elm) {
+                   return elm.getText();
+                });
+            }
+
+            query.sendKeys('tablet');
+
+            expect(getNames()).toEqual([
+                "Motorola XOOM with Wi-Fi",
+                "MOTOROLA XOOM"
+            ]);
+
+            element(by.model('orderProp')).element(by.css('option[value="name"]')).click();
+
+            expect(getNames()).toEqual([
+                "MOTOROLA XOOM",
+                "Motorola XOOM with Wi-Fi"
+            ]);
 
         });
     });
