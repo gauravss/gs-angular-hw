@@ -15,14 +15,14 @@ describe('myPhoneCat App', function() {
 
         it('should filter the phone list as a user types into search box', function() {
 
-            expect(phoneList.count()).toBe(3);
+            expect(phoneList.count()).toBe(20);
 
             query.sendKeys('nexus');
             expect(phoneList.count()).toBe(1);
 
             query.clear();
             query.sendKeys('motorola');
-            expect(phoneList.count()).toBe(2);
+            expect(phoneList.count()).toBe(8);
 
             query.clear();
             query.sendKeys('asdasdad');
@@ -48,17 +48,24 @@ describe('myPhoneCat App', function() {
             query.sendKeys('tablet');
 
             expect(getNames()).toEqual([
-                "Motorola XOOM with Wi-Fi",
-                "MOTOROLA XOOM"
+                "Motorola XOOM™ with Wi-Fi",
+                "MOTOROLA XOOM™"
             ]);
 
             element(by.model('orderProp')).element(by.css('option[value="name"]')).click();
 
             expect(getNames()).toEqual([
-                "MOTOROLA XOOM",
-                "Motorola XOOM with Wi-Fi"
+                "MOTOROLA XOOM™",
+                "Motorola XOOM™ with Wi-Fi"
             ]);
+        });
 
+        it('should render phone specific links', function() {
+            query.sendKeys('nexus');
+            element.all(by.css('.phones li a')).first().click();
+            browser.getLocationAbsUrl().then(function(url) {
+               expect(url.split('#')[1]).toBe('/phones/nexus-s');
+            });
         });
     });
 });
