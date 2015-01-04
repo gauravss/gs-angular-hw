@@ -5,7 +5,8 @@ describe('myPhoneCat Controller', function() {
     describe('PhoneListController', function () {
         var scope, ctrl, $httpBackend;
 
-        beforeEach(module('myPhoneCatApp'));
+        //beforeEach(module('myPhoneCatApp'));
+        beforeEach(module('phonecatControllers'));
 
         beforeEach(inject(function(_$httpBackend_, $rootScope, $controller){
             $httpBackend = _$httpBackend_;
@@ -32,7 +33,7 @@ describe('myPhoneCat Controller', function() {
             expect(scope.phones).toEqual([{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
         });
 
-        it('should set the defult value of orderProp model', function() {
+        it('should set the default value of orderProp model', function() {
             expect(scope.orderProp).toBe('age');
         });
 

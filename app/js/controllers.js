@@ -3,9 +3,10 @@
  */
 'use strict';
 
-var app = angular.module('myPhoneCatApp', []);
+//var app = angular.module('myPhoneCatApp', []);
+var phonecatControllers = angular.module('phonecatControllers', []);
 
-app.controller('PhoneListController', ['$scope', '$http', function($scope, $http) {
+phonecatControllers.controller('PhoneListController', ['$scope', '$http', function($scope, $http) {
     $http.get('phones/phones.json').success(function(data) {
         $scope.phones = data;
         //$scope.phones = data.splice(0,5);
@@ -20,3 +21,8 @@ app.controller('PhoneListController', ['$scope', '$http', function($scope, $http
     $scope.name = "World";
     $scope.orderProp = 'age';
 }]);
+
+phonecatControllers.controller('PhoneDetailController', ['$scope', '$routeParams',
+    function($scope, $routeParams) {
+        $scope.phoneId = $routeParams.phoneId;
+    }]);

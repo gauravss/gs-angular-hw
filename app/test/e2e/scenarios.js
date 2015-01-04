@@ -29,14 +29,14 @@ describe('myPhoneCat App', function() {
             expect(phoneList.count()).toBe(0);
         });
 
-        it('should display the current filter value in the title bar', function() {
-            query.clear();
-            expect(browser.getTitle()).toMatch(/Google Phone Gallery:\s*$/);
-
-            query.sendKeys('nexus');
-            expect(browser.getTitle()).toMatch(/Google Phone Gallery: nexus$/);
-
-        });
+        //it('should display the current filter value in the title bar', function() {
+        //    query.clear();
+        //    expect(browser.getTitle()).toMatch(/Google Phone Gallery:\s*$/);
+        //
+        //    query.sendKeys('nexus');
+        //    expect(browser.getTitle()).toMatch(/Google Phone Gallery: nexus$/);
+        //
+        //});
 
         it('should be possible to control the phone order via the drop down select box', function() {
             function getNames() {
@@ -67,5 +67,24 @@ describe('myPhoneCat App', function() {
                expect(url.split('#')[1]).toBe('/phones/nexus-s');
             });
         });
+
+        it('should redirect index.html to index.html#/phones', function() {
+            browser.get('index.html');
+            browser.getLocationAbsUrl().then(function(url) {
+                expect(url.split('#')[1]).toBe('/phones');
+            });
+        });
+
+    });
+
+    describe('Phone detail view', function() {
+       beforeEach(function() {
+           browser.get('index.html#/phones/nexus-s');
+       });
+
+        it('should display placeholder page with phoneId', function() {
+           expect(element(by.binding('phoneId')).getText()).toBe('nexus-s');
+        });
+
     });
 });
