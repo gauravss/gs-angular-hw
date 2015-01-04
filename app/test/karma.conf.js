@@ -1,7 +1,7 @@
 module.exports = function(config){
   config.set({
 
-    basePath : './',
+    basePath : '../..',
 
     files : [
       'app/bower_components/angular/angular.js',
@@ -9,7 +9,7 @@ module.exports = function(config){
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/components/**/*.js',
       'app/js/**/*.js',
-      'app/test/**/*.js'
+      'app/test/unit/**/*.js'
     ],
 
     autoWatch : true,
